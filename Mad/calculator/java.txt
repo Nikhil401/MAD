@@ -1,0 +1,192 @@
+package com.example.calculator;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+public class MainActivity extends AppCompatActivity {
+Button bt0, bt1,
+bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btdot,btadd,btsub,btmul,btdiv,btrem,btclear,bspace,btequ;
+EditText edittext;
+float mv,mvt;
+boolean add,sub,mul,div,rem;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+bt0 = (Button) findViewById(R.id.b0);
+bt1 = (Button) findViewById(R.id.b1);
+bt2 = (Button) findViewById(R.id.b2);
+bt3 = (Button) findViewById(R.id.b3);
+bt4 = (Button) findViewById(R.id.b4);
+bt5 = (Button) findViewById(R.id.b5);
+bt6 = (Button) findViewById(R.id.b6);
+bt7 = (Button) findViewById(R.id.b7);
+bt8 = (Button) findViewById(R.id.b8);
+bt9 = (Button) findViewById(R.id.b9);
+btdot = (Button) findViewById(R.id.bdot);
+btadd = (Button) findViewById(R.id.badd);
+btsub = (Button) findViewById(R.id.bsub);
+btmul = (Button) findViewById(R.id.bmul);
+btdiv = (Button) findViewById(R.id.bdiv);
+btclear = (Button) findViewById(R.id.bclear);
+btequ = (Button) findViewById(R.id.bequal);
+btdot=(Button) findViewById(R.id.bdot);
+btrem=(Button) findViewById(R.id.brem);
+bspace=(Button) findViewById(R.id.bb);
+edittext = (EditText) findViewById(R.id.et);
+bt0.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "0");
+}
+});
+bt1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "1");
+}
+});
+bt2.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "2");
+}
+});
+bt3.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "3");
+}
+});
+bt4.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "4");
+}
+});
+bt5.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "5");
+}
+});
+bt6.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "6");
+}
+});
+bt7.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "7");
+}
+});
+bt8.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "8");
+}
+});
+bt9.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + "9");
+}
+});
+btdot.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText(edittext.getText() + ".");
+}
+});
+btadd.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+if (edittext == null) {
+edittext.setText("");
+} else {
+mv = Float.parseFloat(edittext.getText() + "");
+add = true;
+edittext.setText(null);
+}
+}
+});
+btsub.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+mv = Float.parseFloat(edittext.getText() + "");
+sub = true;
+edittext.setText(null);
+}
+});
+btmul.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+mv = Float.parseFloat(edittext.getText() + "");
+mul = true;
+edittext.setText(null);
+}
+});
+btdiv.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+mv = Float.parseFloat(edittext.getText() + "");
+div = true;
+edittext.setText(null);
+}
+});
+btrem.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+mv = Float.parseFloat(edittext.getText() + "");
+rem = true;
+edittext.setText(null);
+}
+});
+btequ.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+mvt = Float.parseFloat(edittext.getText() + "");
+if (add == true) {
+edittext.setText(mv + mvt + "");
+add = false;
+}
+if (sub == true) {
+edittext.setText(mv - mvt + "");
+sub = false;
+}
+
+if (mul == true) {
+edittext.setText(mv * mvt + "");
+mul = false;
+}
+if (div == true) {
+edittext.setText(mv / mvt + "");
+div = false;
+}
+if (rem == true) {
+edittext.setText(mv % mvt + "");
+div = false;
+}
+}
+});
+btclear.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+edittext.setText("");
+}
+});
+bspace.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+String textInBox = edittext.getText().toString();
+if (textInBox.length() > 0) {
+String newText = textInBox.substring(0, textInBox.length()-1);
+edittext.setText(newText);
+}
+}
+});
+}
+}

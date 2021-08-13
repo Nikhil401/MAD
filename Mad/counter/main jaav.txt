@@ -1,0 +1,50 @@
+package com.example.counter;
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
+public class MainActivity extends Activity {
+private long lastpause;
+@Override
+public void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+final Chronometer myChronometer = (Chronometer)findViewById(R.id.chronometer);
+Button buttonStart = (Button)findViewById(R.id.buttonstart);
+Button buttonStop = (Button)findViewById(R.id.buttonstop);
+Button buttonReset = (Button)findViewById(R.id.buttonreset);
+buttonStart.setOnClickListener(new Button.OnClickListener(){
+@Override
+public void onClick(View v) {
+if(lastpause != 0)
+{
+myChronometer.setBase(myChronometer.getBase() + SystemClock.elapsedRealtime()
+- lastpause);
+}
+else
+{
+myChronometer.setBase(SystemClock.elapsedRealtime());
+}
+myChronometer.start();
+buttonStart.setEnabled(false);
+buttonStop.setEnabled(true);
+}
+});
+buttonStop.setOnClickListener(new Button.OnClickListener(){
+@Override
+public void onClick(View v) {
+lastpause =SystemClock.elapsedRealtime();
+myChronometer.stop();
+buttonStop.setEnabled(false);
+buttonStart.setEnabled(true);
+}
+});
+buttonReset.setOnClickListener(new Button.OnClickListener(){
+@Override
+public void onClick(View v) {
+myChronometer.setBase(SystemClock.elapsedRealtime());
+} });
+}
+}
